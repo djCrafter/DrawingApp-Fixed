@@ -29,7 +29,7 @@ class ViewController: UIViewController {
     private lazy var cardBehavior = CardBehavior(in: animator)
     
     var flipCount = 0
-    
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
             viewBack.sides = figureSides
         }
         
-//        viewBack.isViewBack = false
+
         
         
      
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         viewBack.isHidden = false
         for view in myViews{
         view.isHidden = true
-     //  cardBehavior.removeItem(view)
+        cardBehavior.removeItem(view)
         }
     }
     
@@ -115,8 +115,7 @@ class ViewController: UIViewController {
                             animations: {[weak self] in
                                 self?.viewBack.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
                             }, completion: { _ in
-                                //self?.startViewMoving()
-                                self?.refrag()
+                                self?.startViewMoving()
                         })
                     }
             })
@@ -126,17 +125,7 @@ class ViewController: UIViewController {
     }
 
     
-    func refrag() {
-        for view in myViews {
-            
-            
-            view.frame.size.height = 127.5
-            view.frame.size.width = 99.5
-        }
-        
-        startViewMoving()
-    }
-    
+
    
     @objc func viewBackSwipeHandler(tap: UISwipeGestureRecognizer) {
         let myView = tap.view as? MyView
