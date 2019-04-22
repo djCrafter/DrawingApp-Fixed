@@ -59,7 +59,10 @@ class ViewController: UIViewController {
             viewBack.sides = figureSides
         }
         
-        viewBack.isViewBack = false
+//        viewBack.isViewBack = false
+        
+        
+     
         stopViewMoving()
         UIViewPropertyAnimator.runningPropertyAnimator(
             withDuration: 0.6,
@@ -74,19 +77,21 @@ class ViewController: UIViewController {
     func stopViewMoving() {
         viewBack.isHidden = false
         for view in myViews{
-            view.isHidden = true
-           cardBehavior.removeItem(view)
+        view.isHidden = true
+     //  cardBehavior.removeItem(view)
         }
     }
     
     func startViewMoving() {
         viewBack.isHidden = true
         for view in myViews {
-            view.isHidden = false
-           cardBehavior.addItem(view)
+         view.isHidden = false
+        cardBehavior.addItem(view)
         }
+    
     }
     
+   
     
     @objc func viewBackTapHandler(tap: UITapGestureRecognizer) {
         switch tap.state {
@@ -110,7 +115,8 @@ class ViewController: UIViewController {
                             animations: {[weak self] in
                                 self?.viewBack.transform = CGAffineTransform.identity.scaledBy(x: 0.1, y: 0.1)
                             }, completion: { _ in
-                                self?.startViewMoving()
+                                //self?.startViewMoving()
+                                self?.refrag()
                         })
                     }
             })
@@ -119,6 +125,18 @@ class ViewController: UIViewController {
         }        
     }
 
+    
+    func refrag() {
+        for view in myViews {
+            
+            
+            view.frame.size.height = 127.5
+            view.frame.size.width = 99.5
+        }
+        
+        startViewMoving()
+    }
+    
    
     @objc func viewBackSwipeHandler(tap: UISwipeGestureRecognizer) {
         let myView = tap.view as? MyView
